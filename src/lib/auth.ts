@@ -1,6 +1,8 @@
 import { ENDPOINTS } from "./config";
 import { UserRole } from "@/types";
 
+
+
 interface LoginResponse {
   refresh: string;
   access: string;
@@ -36,4 +38,4 @@ export async function logout(refreshToken: string): Promise<void> {
   if (!response.ok) {
     throw new Error("Error al cerrar sesión");
   }
-} 
+}

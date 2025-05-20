@@ -48,7 +48,7 @@ export function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-md space-y-4">
       <div className="space-y-2">
-        <label htmlFor="email" className="block text-sm font-medium">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
           Correo Electrónico
         </label>
         <input
@@ -56,12 +56,12 @@ export function LoginForm() {
           name="email"
           type="email"
           required
-          className="w-full px-3 py-2 border rounded-md"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           placeholder="ejemplo@escuela.edu"
         />
       </div>
       <div className="space-y-2">
-        <label htmlFor="password" className="block text-sm font-medium">
+        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
           Contraseña
         </label>
         <input
@@ -69,7 +69,7 @@ export function LoginForm() {
           name="password"
           type="password"
           required
-          className="w-full px-3 py-2 border rounded-md"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         />
       </div>
       {error && (
@@ -78,7 +78,7 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
+        className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 transition-colors duration-200"
       >
         {loading ? "Iniciando sesión..." : "Iniciar Sesión"}
       </button>

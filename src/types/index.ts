@@ -1,5 +1,6 @@
 export type UserRole = "director" | "profesor" | "alumno";
 
+
 export interface User {
     id: string;
     email: string;
@@ -8,16 +9,19 @@ export interface User {
     rol: UserRole;
 }
 
+
 export interface Alumno extends User {
     rol: "alumno";
     curso: string;
     grupo: "A" | "B";
 }
 
+
 export interface Profesor extends User {
     rol: "profesor";
     materias: string[];
 }
+
 
 export interface Materia {
     id: string;
@@ -26,6 +30,7 @@ export interface Materia {
     curso: string;
     grupo: "A" | "B";
 }
+
 
 export interface Calificacion {
     id: string;
@@ -36,6 +41,7 @@ export interface Calificacion {
     fecha: Date;
 }
 
+
 export interface Asistencia {
     id: string;
     alumnoId: string;
@@ -43,6 +49,7 @@ export interface Asistencia {
     fecha: Date;
     presente: boolean;
 }
+
 
 export interface Participacion {
     id: string;

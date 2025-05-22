@@ -4,8 +4,8 @@ import { LoginForm } from "@/components/auth/login-form";
 
 
 export const metadata: Metadata = {
-  title: "Inicio | Sistema de Gestión Académica",
-  description: "Bienvenido al sistema de gestión académica",
+    title: "Inicio | Sistema de Gestión Académica",
+    description: "Bienvenido al sistema de gestión académica",
 };
 
 export default function Home() {

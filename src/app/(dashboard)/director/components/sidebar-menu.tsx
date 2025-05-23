@@ -1,7 +1,8 @@
 "use client";
-
 import { cn } from "@/lib/utils";
-import { useDashboardSection, DashboardSection } from "../../context/dashboard-section-context";
+import { useDashboardSection, DashboardSection } from "@/app/(dashboard)/context/dashboard-section-context";
+
+
 
 const menuItems = [
     {

@@ -1,6 +1,14 @@
-import { ENDPOINTS } from "./config";
-import { fetchWithAuth } from "./utils";
-import { Materia, MateriaFormData, PaginatedResponse, Profesor, ProfesorFormData } from "@/types";
+import { ENDPOINTS } from "@/lib/config";
+import { fetchWithAuth } from "@/lib/utils";
+import { 
+    Materia, 
+    MateriaFormData, 
+    PaginatedResponse, 
+    Profesor, 
+    ProfesorFormData,
+    ProfesorDetalle 
+} from "@/types";
+
 
 // Servicios para Profesores
 export async function getProfesores(page: number = 1): Promise<PaginatedResponse<Profesor>> {
@@ -8,8 +16,8 @@ export async function getProfesores(page: number = 1): Promise<PaginatedResponse
     return response.json();
 }
 
-export async function getProfesor(id: number): Promise<Profesor> {
-    const response = await fetchWithAuth(`${ENDPOINTS.AUTH.PROFESORES}/${id}`);
+export async function getProfesor(id: number): Promise<ProfesorDetalle> {
+    const response = await fetchWithAuth(`${ENDPOINTS.AUTH.PROFESORES}${id}/`);
     return response.json();
 }
 
@@ -22,12 +30,14 @@ export async function createProfesor(data: ProfesorFormData): Promise<Profesor> 
 }
 
 export async function updateProfesor(id: number, data: ProfesorFormData): Promise<Profesor> {
-    const response = await fetchWithAuth(`${ENDPOINTS.AUTH.PROFESORES}/${id}`, {
+    const response = await fetchWithAuth(`${ENDPOINTS.AUTH.PROFESORES}${id}/`, {
         method: "PUT",
         body: JSON.stringify(data),
     });
     return response.json();
 }
+
+// *******************************************************************************************************
 
 // Servicios para Materias
 export async function getMaterias(page: number = 1): Promise<PaginatedResponse<Materia>> {
@@ -36,7 +46,7 @@ export async function getMaterias(page: number = 1): Promise<PaginatedResponse<M
 }
 
 export async function getMateria(id: number): Promise<Materia> {
-    const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.MATERIAS}/${id}`);
+    const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.MATERIAS}${id}/`);
     return response.json();
 }
 
@@ -49,9 +59,9 @@ export async function createMateria(data: MateriaFormData): Promise<Materia> {
 }
 
 export async function updateMateria(id: number, data: MateriaFormData): Promise<Materia> {
-    const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.MATERIAS}/${id}`, {
+    const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.MATERIAS}${id}/`, {
         method: "PUT",
         body: JSON.stringify(data),
     });
     return response.json();
-} 
+}

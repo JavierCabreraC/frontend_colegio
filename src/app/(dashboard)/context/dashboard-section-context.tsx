@@ -1,6 +1,7 @@
 "use client";
-
 import { createContext, useContext } from "react";
+
+
 
 export type DashboardSection = "profesores" | "alumnos" | "materias" | "horarios" | "aulas" | "periodos" | "bitacora" | "reportes" | "predicciones";
 
@@ -15,4 +16,4 @@ export function useDashboardSection() {
     const ctx = useContext(DashboardSectionContext);
     if (!ctx) throw new Error("useDashboardSection debe usarse dentro de DashboardSectionContext");
     return ctx;
-} 
+}

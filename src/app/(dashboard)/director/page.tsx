@@ -4,8 +4,8 @@ import { ProfesoresList } from "./components/profesores-list";
 import { useDashboardSection } from "@/app/(dashboard)/context/dashboard-section-context";
 
 
+
 export default function DirectorDashboard() {
-    // Usar el hook del contexto que ya viene del layout padre
     const { selectedSection } = useDashboardSection();
 
     const renderContent = () => {
@@ -69,8 +69,8 @@ export default function DirectorDashboard() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-full">
-            <div className="w-full max-w-6xl">{renderContent()}</div>
+        <div className="w-full">
+            {renderContent()}
         </div>
     );
 }

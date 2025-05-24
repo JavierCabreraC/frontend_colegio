@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Materia, MateriaFormData } from "@/types";
 
 
+
 interface MateriaFormModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -81,7 +82,7 @@ export function MateriaFormModal({
                                 required
                                 value={formData.codigo}
                                 onChange={(e) => setFormData({ ...formData, codigo: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900"
                                 placeholder="Ej: MAT101"
                             />
                         </div>
@@ -95,7 +96,7 @@ export function MateriaFormModal({
                                 required
                                 value={formData.nombre}
                                 onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-900"
                                 placeholder="Ej: Matemáticas I"
                             />
                         </div>
@@ -108,7 +109,7 @@ export function MateriaFormModal({
                                 value={formData.descripcion}
                                 onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
                                 rows={3}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-900"
                                 placeholder="Descripción de la materia..."
                             />
                         </div>
@@ -124,7 +125,7 @@ export function MateriaFormModal({
                                 max="20"
                                 value={formData.horas_semanales}
                                 onChange={(e) => setFormData({ ...formData, horas_semanales: parseInt(e.target.value) || 1 })}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-900"
                             />
                         </div>
 

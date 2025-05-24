@@ -1,7 +1,7 @@
-// src/app/(dashboard)/director/components/profesor-form-modal.tsx
 "use client";
 import { useState, useEffect } from "react";
 import { Profesor, ProfesorFormData } from "@/types";
+
 
 
 interface ProfesorFormModalProps {
@@ -22,7 +22,7 @@ export function ProfesorFormModal({
     const [formData, setFormData] = useState<ProfesorFormData>({
         usuario: {
             email: "",
-            password: "",
+            // password: "",
         },
         nombres: "",
         apellidos: "",
@@ -41,7 +41,7 @@ export function ProfesorFormModal({
             setFormData({
                 usuario: {
                     email: profesor.email,
-                    password: "", // No se muestra la contraseña actual
+                    // password: "", // No se muestra la contraseña actual
                 },
                 nombres: profesor.nombres || "",
                 apellidos: profesor.apellidos || "",
@@ -74,16 +74,31 @@ export function ProfesorFormModal({
     }, [profesor]);
 
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        
-        // En modo edición, si no se ingresa contraseña, no enviarla
-        const dataToSubmit = { ...formData };
-        if (profesor && !formData.usuario.password) {
-            delete (dataToSubmit.usuario as any).password;
-        }
-        
-        await onSubmit(dataToSubmit);
-    };
+    e.preventDefault();
+    
+    if (profesor) {
+        // Para actualización, estructura específica sin password
+        const updateData = {
+            usuario: {
+                email: formData.usuario.email,
+                activo: true
+            },
+            nombres: formData.nombres,
+            apellidos: formData.apellidos,
+            cedula_identidad: formData.cedula_identidad,
+            fecha_nacimiento: formData.fecha_nacimiento,
+            genero: formData.genero,
+            telefono: formData.telefono,
+            direccion: formData.direccion,
+            especialidad: formData.especialidad,
+            fecha_contratacion: formData.fecha_contratacion
+        };
+        await onSubmit(updateData as any);
+    } else {
+        // Para creación, incluir password
+        await onSubmit(formData);
+    }
+};
 
     if (!isOpen) return null;
 
@@ -124,11 +139,11 @@ export function ProfesorFormModal({
                                             ...formData,
                                             usuario: { ...formData.usuario, email: e.target.value }
                                         })}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900"
                                     />
                                 </div>
                                 
-                                <div>
+                                {/* <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">
                                         Contraseña {profesor ? "(dejar vacío para mantener)" : "*"}
                                     </label>
@@ -144,7 +159,7 @@ export function ProfesorFormModal({
                                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                                         placeholder={profesor ? "••••••••" : ""}
                                     />
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 
@@ -163,7 +178,7 @@ export function ProfesorFormModal({
                                         maxLength={100}
                                         value={formData.nombres}
                                         onChange={(e) => setFormData({ ...formData, nombres: e.target.value })}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-900"
                                     />
                                 </div>
                                 
@@ -177,7 +192,7 @@ export function ProfesorFormModal({
                                         maxLength={100}
                                         value={formData.apellidos}
                                         onChange={(e) => setFormData({ ...formData, apellidos: e.target.value })}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-900"
                                     />
                                 </div>
                                 
@@ -191,7 +206,7 @@ export function ProfesorFormModal({
                                         maxLength={20}
                                         value={formData.cedula_identidad}
                                         onChange={(e) => setFormData({ ...formData, cedula_identidad: e.target.value })}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-900"
                                     />
                                 </div>
                                 
@@ -216,7 +231,7 @@ export function ProfesorFormModal({
                                         required
                                         value={formData.genero}
                                         onChange={(e) => setFormData({ ...formData, genero: e.target.value })}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-900"
                                     >
                                         <option value="M">Masculino</option>
                                         <option value="F">Femenino</option>
@@ -232,7 +247,7 @@ export function ProfesorFormModal({
                                         maxLength={20}
                                         value={formData.telefono || ""}
                                         onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-900"
                                     />
                                 </div>
                             </div>
@@ -246,7 +261,7 @@ export function ProfesorFormModal({
                                     maxLength={60}
                                     value={formData.direccion || ""}
                                     onChange={(e) => setFormData({ ...formData, direccion: e.target.value })}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-900"
                                 />
                             </div>
                         </div>
@@ -265,7 +280,7 @@ export function ProfesorFormModal({
                                         maxLength={20}
                                         value={formData.especialidad || ""}
                                         onChange={(e) => setFormData({ ...formData, especialidad: e.target.value })}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-900"
                                     />
                                 </div>
                                 
@@ -278,7 +293,7 @@ export function ProfesorFormModal({
                                         required
                                         value={formData.fecha_contratacion}
                                         onChange={(e) => setFormData({ ...formData, fecha_contratacion: e.target.value })}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-gray-900"
                                     />
                                 </div>
                             </div>

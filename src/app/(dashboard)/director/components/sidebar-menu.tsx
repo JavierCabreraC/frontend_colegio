@@ -38,22 +38,26 @@ const menuItems = [
 
 export function SidebarMenu({ isCollapsed }: { isCollapsed: boolean }) {
     const { selectedSection, setSelectedSection } = useDashboardSection();
+    
     return (
-        <div className="space-y-6">
-            {menuItems.map((section) => (
+        <div className="space-y-6 px-3 pt-4">
+            {menuItems.map((section, sectionIndex) => (
                 <div key={section.title}>
                     {!isCollapsed && (
-                        <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                        <h3 className={cn(
+                            "px-3 mb-3 text-xs font-semibold text-gray-500 uppercase tracking-wider",
+                            sectionIndex === 0 ? "mt-2" : ""
+                        )}>
                             {section.title}
                         </h3>
                     )}
-                    <div className="mt-2 space-y-1">
+                    <div className="space-y-1">
                         {section.items.map((item) => (
                             <button
                                 key={item.section}
                                 onClick={() => setSelectedSection(item.section as DashboardSection)}
                                 className={cn(
-                                    "w-full flex items-center px-3 py-2 text-sm font-medium rounded-md",
+                                    "w-full flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors",
                                     selectedSection === item.section
                                         ? "bg-blue-50 text-blue-700"
                                         : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",

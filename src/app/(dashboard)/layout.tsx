@@ -37,7 +37,7 @@ export default function DashboardLayout({
             <div className="min-h-screen bg-gray-100">
                 {/* Barra superior */}
                 <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="px-4 sm:px-6 lg:px-8">
                         <div className="flex justify-between h-16">
                             <div className="flex items-center">
                                 <button
@@ -64,12 +64,14 @@ export default function DashboardLayout({
     
                 <div className="flex pt-16">
                     {/* Barra lateral */}
-                    <aside className={`fixed left-0 top-16 bottom-0 ${isSidebarOpen ? 'w-64' : 'w-20'} bg-white shadow-sm transition-all duration-300 z-40`}>
-                        <SidebarMenu isCollapsed={!isSidebarOpen} />
+                    <aside className={`fixed left-0 top-16 bottom-0 ${isSidebarOpen ? 'w-64' : 'w-20'} bg-white shadow-sm transition-all duration-300 z-40 overflow-y-auto`}>
+                        <div className="py-4">
+                            <SidebarMenu isCollapsed={!isSidebarOpen} />
+                        </div>
                     </aside>
     
                     {/* Contenido principal */}
-                    <main className={`flex-1 ${isSidebarOpen ? 'ml-64' : 'ml-20'} transition-all duration-300 p-8`}>
+                    <main className={`flex-1 ${isSidebarOpen ? 'ml-64' : 'ml-20'} transition-all duration-300 p-4`}>
                         {children}
                     </main>
                 </div>

@@ -79,26 +79,30 @@ export function ProfesoresList() {
     }
 
     async function handleEdit(usuarioId: number) {
-        try {
-            const profesorDetalle = await getProfesor(usuarioId);
-            // Map ProfesorDetalle to Profesor
-            const profesor: Profesor = {
-                usuario: typeof profesorDetalle.usuario === "object"
-                    ? profesorDetalle.usuario.id
-                    : profesorDetalle.usuario,
-                nombre_completo: profesorDetalle.nombre_completo,
-                email: profesorDetalle.email,
-                cedula_identidad: profesorDetalle.cedula_identidad,
-                especialidad: profesorDetalle.especialidad,
-                activo: profesorDetalle.activo,
-                fecha_contratacion: profesorDetalle.fecha_contratacion,
-            };
-            setEditingProfesor(profesor);
-            setIsModalOpen(true);
-        } catch (err) {
-            setError("Error al cargar los datos del profesor");
-        }
+    try {
+        const profesorDetalle = await getProfesor(usuarioId);
+        // Crear objeto profesor con los datos completos
+        const profesor: any = {
+            usuario: usuarioId,
+            email: profesorDetalle.usuario.email || profesorDetalle.email,
+            nombre_completo: profesorDetalle.nombre_completo,
+            nombres: profesorDetalle.nombres,
+            apellidos: profesorDetalle.apellidos,
+            cedula_identidad: profesorDetalle.cedula_identidad,
+            fecha_nacimiento: profesorDetalle.fecha_nacimiento,
+            genero: profesorDetalle.genero,
+            telefono: profesorDetalle.telefono,
+            direccion: profesorDetalle.direccion,
+            especialidad: profesorDetalle.especialidad,
+            fecha_contratacion: profesorDetalle.fecha_contratacion,
+            activo: profesorDetalle.activo
+        };
+        setEditingProfesor(profesor);
+        setIsModalOpen(true);
+    } catch (err) {
+        setError("Error al cargar los datos del profesor");
     }
+}
 
     function handleCloseModal() {
         setIsModalOpen(false);

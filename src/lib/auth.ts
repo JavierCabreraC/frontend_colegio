@@ -1,6 +1,6 @@
 import { UserRole } from "@/types";
-import { ENDPOINTS } from "./config";
-import { fetchWithAuth } from "./utils";
+import { ENDPOINTS } from "@/lib/config";
+import { fetchWithAuth } from "@/lib/utils";
 
 
 

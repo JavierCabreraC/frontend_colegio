@@ -1,12 +1,76 @@
+"use client";
+import { MateriasList } from "./components/materias-list";
+import { ProfesoresList } from "./components/profesores-list";
+import { useDashboardSection } from "@/app/(dashboard)/context/dashboard-section-context";
+
+
+
 export default function DirectorDashboard() {
+    const { selectedSection } = useDashboardSection();
+
+    const renderContent = () => {
+        switch (selectedSection) {
+            case "profesores":
+                return <ProfesoresList />;
+            case "materias":
+                return <MateriasList />;
+            case "alumnos":
+                return (
+                    <div className="text-center text-gray-500 py-8">
+                        <p className="text-lg">Sección de Alumnos</p>
+                        <p className="text-sm mt-2">En desarrollo...</p>
+                    </div>
+                );
+            case "horarios":
+                return (
+                    <div className="text-center text-gray-500 py-8">
+                        <p className="text-lg">Gestión de Horarios</p>
+                        <p className="text-sm mt-2">En desarrollo...</p>
+                    </div>
+                );
+            case "aulas":
+                return (
+                    <div className="text-center text-gray-500 py-8">
+                        <p className="text-lg">Gestión de Aulas</p>
+                        <p className="text-sm mt-2">En desarrollo...</p>
+                    </div>
+                );
+            case "periodos":
+                return (
+                    <div className="text-center text-gray-500 py-8">
+                        <p className="text-lg">Períodos Académicos</p>
+                        <p className="text-sm mt-2">En desarrollo...</p>
+                    </div>
+                );
+            case "bitacora":
+                return (
+                    <div className="text-center text-gray-500 py-8">
+                        <p className="text-lg">Bitácora del Sistema</p>
+                        <p className="text-sm mt-2">En desarrollo...</p>
+                    </div>
+                );
+            case "reportes":
+                return (
+                    <div className="text-center text-gray-500 py-8">
+                        <p className="text-lg">Reportes Institucionales</p>
+                        <p className="text-sm mt-2">En desarrollo...</p>
+                    </div>
+                );
+            case "predicciones":
+                return (
+                    <div className="text-center text-gray-500 py-8">
+                        <p className="text-lg">Predicciones ML</p>
+                        <p className="text-sm mt-2">En desarrollo...</p>
+                    </div>
+                );
+            default:
+                return <div className="text-center text-gray-500">Seleccione una opción del menú</div>;
+        }
+    };
+
     return (
-        <div className="text-center">
-            <h2 className="text-2xl font-bold text-blue-900 mb-4">
-                Bienvenido, Director
-            </h2>
-            <p className="text-gray-600">
-                Aquí podrás gestionar toda la información académica de la institución.
-            </p>
+        <div className="w-full">
+            {renderContent()}
         </div>
     );
 }

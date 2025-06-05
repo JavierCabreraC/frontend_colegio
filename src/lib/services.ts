@@ -16,7 +16,11 @@ import {
     Trimestre,
     Matriculacion,
     ProfesorMateria,
-    EstadisticasAcademicas
+    EstadisticasAcademicas,
+    MisMateria,
+    MisGrupo,
+    MisAlumno,
+    MisHorario
 } from "@/types";
 
 
@@ -131,5 +135,41 @@ export async function getProfesorMaterias(page: number = 1): Promise<PaginatedRe
 // Servicios para Estadísticas
 export async function getEstadisticasAcademicas(): Promise<EstadisticasAcademicas> {
     const response = await fetchWithAuth(ENDPOINTS.ACADEMIC.STATS);
+    return response.json();
+}
+
+// Servicios para Profesor - Mis Materias
+export async function getMisMaterias(): Promise<PaginatedResponse<MisMateria>> {
+    const response = await fetchWithAuth(ENDPOINTS.ACADEMIC.MIS_MATERIAS);
+    if (!response.ok) {
+        throw new Error("Error al cargar las materias");
+    }
+    return response.json();
+}
+
+// Servicios para Profesor - Mis Grupos
+export async function getMisGrupos(): Promise<PaginatedResponse<MisGrupo>> {
+    const response = await fetchWithAuth(ENDPOINTS.ACADEMIC.MIS_GRUPOS);
+    if (!response.ok) {
+        throw new Error("Error al cargar los grupos");
+    }
+    return response.json();
+}
+
+// Servicios para Profesor - Mis Alumnos
+export async function getMisAlumnos(): Promise<PaginatedResponse<MisAlumno>> {
+    const response = await fetchWithAuth(ENDPOINTS.ACADEMIC.MIS_ALUMNOS);
+    if (!response.ok) {
+        throw new Error("Error al cargar los alumnos");
+    }
+    return response.json();
+}
+
+// Servicios para Profesor - Mis Horarios
+export async function getMisHorarios(): Promise<PaginatedResponse<MisHorario>> {
+    const response = await fetchWithAuth(ENDPOINTS.ACADEMIC.MIS_HORARIOS);
+    if (!response.ok) {
+        throw new Error("Error al cargar los horarios");
+    }
     return response.json();
 }

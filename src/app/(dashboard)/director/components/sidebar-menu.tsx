@@ -9,7 +9,7 @@ const menuItems = [
         title: "Gestión de Personal",
         items: [
             { name: "Profesores", section: "profesores" as DashboardSection, icon: "👨‍🏫" },
-            { name: "Alumnos", section: "alumnos" as DashboardSection, icon: "👨‍🎓" },
+            { name: "Asignación", section: "asignacion" as DashboardSection, icon: "📝" },
         ]
     },
     {
@@ -18,6 +18,10 @@ const menuItems = [
             { name: "Materias", section: "materias" as DashboardSection, icon: "📚" },
             { name: "Horarios", section: "horarios" as DashboardSection, icon: "⏰" },
             { name: "Aulas", section: "aulas" as DashboardSection, icon: "🏫" },
+            { name: "Niveles", section: "niveles" as DashboardSection, icon: "📊" },
+            { name: "Gestiones", section: "gestiones" as DashboardSection, icon: "📅" },
+            { name: "Trimestres", section: "trimestres" as DashboardSection, icon: "📆" },
+            { name: "Matriculaciones", section: "matriculaciones" as DashboardSection, icon: "👥" },
         ]
     },
     {
@@ -31,7 +35,6 @@ const menuItems = [
         title: "Reportes",
         items: [
             { name: "Reportes Institucionales", section: "reportes" as DashboardSection, icon: "📊" },
-            { name: "Predicciones ML", section: "predicciones" as DashboardSection, icon: "🤖" },
         ]
     }
 ];

@@ -6,7 +6,17 @@ import {
     PaginatedResponse, 
     Profesor, 
     ProfesorFormData,
-    ProfesorDetalle 
+    ProfesorDetalle,
+    BitacoraEntry,
+    BitacoraStats,
+    Aula,
+    Nivel,
+    Gestion,
+    Horario,
+    Trimestre,
+    Matriculacion,
+    ProfesorMateria,
+    EstadisticasAcademicas
 } from "@/types";
 
 
@@ -63,5 +73,63 @@ export async function updateMateria(id: number, data: MateriaFormData): Promise<
         method: "PUT",
         body: JSON.stringify(data),
     });
+    return response.json();
+}
+
+export async function getBitacora(): Promise<PaginatedResponse<BitacoraEntry>> {
+    const response = await fetchWithAuth(ENDPOINTS.AUTH.BITACORA);
+    return response.json();
+}
+
+export async function getBitacoraStats(): Promise<BitacoraStats> {
+    const response = await fetchWithAuth(ENDPOINTS.AUTH.BITACORA_STATS);
+    return response.json();
+}
+
+// Servicios para Aulas
+export async function getAulas(page: number = 1): Promise<PaginatedResponse<Aula>> {
+    const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.AULAS}?page=${page}`);
+    return response.json();
+}
+
+// Servicios para Niveles
+export async function getNiveles(): Promise<Nivel[]> {
+    const response = await fetchWithAuth(ENDPOINTS.ACADEMIC.NIVELES);
+    return response.json();
+}
+
+// Servicios para Gestiones
+export async function getGestiones(page: number = 1): Promise<PaginatedResponse<Gestion>> {
+    const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.GESTIONES}?page=${page}`);
+    return response.json();
+}
+
+// Servicios para Horarios
+export async function getHorarios(page: number = 1): Promise<PaginatedResponse<Horario>> {
+    const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.HORARIOS}?page=${page}`);
+    return response.json();
+}
+
+// Servicios para Trimestres
+export async function getTrimestres(): Promise<Trimestre[]> {
+    const response = await fetchWithAuth(ENDPOINTS.ACADEMIC.TRIMESTRES);
+    return response.json();
+}
+
+// Servicios para Matriculaciones
+export async function getMatriculaciones(page: number = 1): Promise<PaginatedResponse<Matriculacion>> {
+    const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.MATRICULACIONES}?page=${page}`);
+    return response.json();
+}
+
+// Servicios para Profesor-Materias
+export async function getProfesorMaterias(page: number = 1): Promise<PaginatedResponse<ProfesorMateria>> {
+    const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.PROFESOR_MATERIAS}?page=${page}`);
+    return response.json();
+}
+
+// Servicios para Estadísticas
+export async function getEstadisticasAcademicas(): Promise<EstadisticasAcademicas> {
+    const response = await fetchWithAuth(ENDPOINTS.ACADEMIC.STATS);
     return response.json();
 }

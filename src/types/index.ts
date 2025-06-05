@@ -78,6 +78,77 @@ export interface MateriaFormData {
     horas_semanales: number;
 }
 
+export interface Aula {
+    id: number;
+    nombre: string;
+    capacidad: number;
+    horarios_count: number;
+}
+
+export interface Nivel {
+    id: number;
+    numero: number;
+    nombre: string;
+    descripcion: string;
+    total_grupos: number;
+    total_alumnos: number;
+}
+
+export interface Gestion {
+    id: number;
+    anio: number;
+    nombre: string;
+    fecha_inicio: string;
+    fecha_fin: string;
+    activa: boolean;
+    total_trimestres: number;
+    total_matriculaciones: number;
+}
+
+export interface Horario {
+    id: number;
+    profesor_materia: number;
+    grupo: number;
+    aula: number;
+    trimestre: number;
+    profesor_nombre: string;
+    profesor_apellidos: string;
+    materia_nombre: string;
+    materia_codigo: string;
+    grupo_nombre: string;
+    aula_nombre: string;
+    trimestre_nombre: string;
+    dia_semana: number;
+    dia_semana_nombre: string;
+    hora_inicio: string;
+    hora_fin: string;
+}
+
+export interface Trimestre {
+    id: number;
+    gestion: number;
+    gestion_nombre: string;
+    gestion_anio: number;
+    numero: number;
+    nombre: string;
+    fecha_inicio: string;
+    fecha_fin: string;
+}
+
+export interface Matriculacion {
+    id: number;
+    alumno: number;
+    gestion: number;
+    alumno_nombre: string;
+    alumno_apellidos: string;
+    alumno_matricula: string;
+    gestion_nombre: string;
+    gestion_anio: number;
+    fecha_matriculacion: string;
+    activa: boolean;
+    observaciones: string;
+}
+
 export interface PaginatedResponse<T> {
     count: number;
     total_pages: number;
@@ -126,4 +197,60 @@ export interface Participacion {
     fecha: Date;
     puntaje: number;
     descripcion: string;
+}
+
+export interface BitacoraEntry {
+    id: number;
+    usuario: number;
+    usuario_email: string;
+    usuario_nombre: string;
+    tipo_accion: string;
+    ip: string;
+    fecha_hora: string;
+    created_at: string;
+}
+
+export interface BitacoraStats {
+    total_acciones: number;
+    acciones_por_tipo: {
+        tipo_accion: string;
+        count: number;
+    }[];
+    acciones_ultimos_7_dias: number;
+    usuarios_mas_activos: {
+        usuario__email: string;
+        usuario__tipo_usuario: string;
+        count: number;
+    }[];
+}
+
+export interface ProfesorMateria {
+    id: number;
+    profesor: number;
+    materia: number;
+    profesor_nombre: string;
+    profesor_apellidos: string;
+    materia_nombre: string;
+    materia_codigo: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface EstadisticasAcademicas {
+    estadisticas: {
+        total_materias: number;
+        total_aulas: number;
+        total_niveles: number;
+        total_grupos: number;
+        materias_sin_profesor: number;
+        aulas_disponibles: number;
+    };
+    materias_mas_profesores: {
+        id: number;
+        codigo: string;
+        nombre: string;
+        descripcion: string;
+        horas_semanales: number;
+        total_profesores: number;
+    }[];
 }

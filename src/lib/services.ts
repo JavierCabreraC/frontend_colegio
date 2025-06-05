@@ -11,7 +11,10 @@ import {
     BitacoraStats,
     Aula,
     Nivel,
-    Gestion
+    Gestion,
+    Horario,
+    Trimestre,
+    Matriculacion
 } from "@/types";
 
 
@@ -96,5 +99,23 @@ export async function getNiveles(): Promise<Nivel[]> {
 // Servicios para Gestiones
 export async function getGestiones(page: number = 1): Promise<PaginatedResponse<Gestion>> {
     const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.GESTIONES}?page=${page}`);
+    return response.json();
+}
+
+// Servicios para Horarios
+export async function getHorarios(page: number = 1): Promise<PaginatedResponse<Horario>> {
+    const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.HORARIOS}?page=${page}`);
+    return response.json();
+}
+
+// Servicios para Trimestres
+export async function getTrimestres(): Promise<Trimestre[]> {
+    const response = await fetchWithAuth(ENDPOINTS.ACADEMIC.TRIMESTRES);
+    return response.json();
+}
+
+// Servicios para Matriculaciones
+export async function getMatriculaciones(page: number = 1): Promise<PaginatedResponse<Matriculacion>> {
+    const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.MATRICULACIONES}?page=${page}`);
     return response.json();
 }

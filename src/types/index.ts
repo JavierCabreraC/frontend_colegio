@@ -105,6 +105,50 @@ export interface Gestion {
     total_matriculaciones: number;
 }
 
+export interface Horario {
+    id: number;
+    profesor_materia: number;
+    grupo: number;
+    aula: number;
+    trimestre: number;
+    profesor_nombre: string;
+    profesor_apellidos: string;
+    materia_nombre: string;
+    materia_codigo: string;
+    grupo_nombre: string;
+    aula_nombre: string;
+    trimestre_nombre: string;
+    dia_semana: number;
+    dia_semana_nombre: string;
+    hora_inicio: string;
+    hora_fin: string;
+}
+
+export interface Trimestre {
+    id: number;
+    gestion: number;
+    gestion_nombre: string;
+    gestion_anio: number;
+    numero: number;
+    nombre: string;
+    fecha_inicio: string;
+    fecha_fin: string;
+}
+
+export interface Matriculacion {
+    id: number;
+    alumno: number;
+    gestion: number;
+    alumno_nombre: string;
+    alumno_apellidos: string;
+    alumno_matricula: string;
+    gestion_nombre: string;
+    gestion_anio: number;
+    fecha_matriculacion: string;
+    activa: boolean;
+    observaciones: string;
+}
+
 export interface PaginatedResponse<T> {
     count: number;
     total_pages: number;

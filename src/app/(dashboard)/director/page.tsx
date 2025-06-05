@@ -7,7 +7,9 @@ import { useDashboardSection } from "@/app/(dashboard)/context/dashboard-section
 import { AulasList } from "./components/aulas-list";
 import { NivelesList } from "./components/niveles-list";
 import { GestionesList } from "./components/gestiones-list";
-
+import { HorariosList } from "./components/horarios-list";
+import { TrimestresList } from "./components/trimestres-list";
+import { MatriculacionesList } from "./components/matriculaciones-list";
 
 export default function DirectorDashboard() {
     const { selectedSection } = useDashboardSection();
@@ -24,6 +26,12 @@ export default function DirectorDashboard() {
                 return <NivelesList />;
             case "gestiones":
                 return <GestionesList />;
+            case "horarios":
+                return <HorariosList />;
+            case "trimestres":
+                return <TrimestresList />;
+            case "matriculaciones":
+                return <MatriculacionesList />;
             case "bitacora":
                 return (
                     <div className="space-y-6">
@@ -35,13 +43,6 @@ export default function DirectorDashboard() {
                 return (
                     <div className="text-center text-gray-500 py-8">
                         <p className="text-lg">Sección de Alumnos</p>
-                        <p className="text-sm mt-2">En desarrollo...</p>
-                    </div>
-                );
-            case "horarios":
-                return (
-                    <div className="text-center text-gray-500 py-8">
-                        <p className="text-lg">Gestión de Horarios</p>
                         <p className="text-sm mt-2">En desarrollo...</p>
                     </div>
                 );

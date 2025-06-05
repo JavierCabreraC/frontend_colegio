@@ -9,6 +9,8 @@ export type DashboardSection =
     | "aulas" 
     | "niveles"
     | "gestiones"
+    | "trimestres"
+    | "matriculaciones"
     | "periodos" 
     | "bitacora" 
     | "reportes" 

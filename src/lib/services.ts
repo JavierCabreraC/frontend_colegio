@@ -14,7 +14,9 @@ import {
     Gestion,
     Horario,
     Trimestre,
-    Matriculacion
+    Matriculacion,
+    ProfesorMateria,
+    EstadisticasAcademicas
 } from "@/types";
 
 
@@ -117,5 +119,17 @@ export async function getTrimestres(): Promise<Trimestre[]> {
 // Servicios para Matriculaciones
 export async function getMatriculaciones(page: number = 1): Promise<PaginatedResponse<Matriculacion>> {
     const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.MATRICULACIONES}?page=${page}`);
+    return response.json();
+}
+
+// Servicios para Profesor-Materias
+export async function getProfesorMaterias(page: number = 1): Promise<PaginatedResponse<ProfesorMateria>> {
+    const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.PROFESOR_MATERIAS}?page=${page}`);
+    return response.json();
+}
+
+// Servicios para Estadísticas
+export async function getEstadisticasAcademicas(): Promise<EstadisticasAcademicas> {
+    const response = await fetchWithAuth(ENDPOINTS.ACADEMIC.STATS);
     return response.json();
 }

@@ -223,3 +223,34 @@ export interface BitacoraStats {
         count: number;
     }[];
 }
+
+export interface ProfesorMateria {
+    id: number;
+    profesor: number;
+    materia: number;
+    profesor_nombre: string;
+    profesor_apellidos: string;
+    materia_nombre: string;
+    materia_codigo: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface EstadisticasAcademicas {
+    estadisticas: {
+        total_materias: number;
+        total_aulas: number;
+        total_niveles: number;
+        total_grupos: number;
+        materias_sin_profesor: number;
+        aulas_disponibles: number;
+    };
+    materias_mas_profesores: {
+        id: number;
+        codigo: string;
+        nombre: string;
+        descripcion: string;
+        horas_semanales: number;
+        total_profesores: number;
+    }[];
+}

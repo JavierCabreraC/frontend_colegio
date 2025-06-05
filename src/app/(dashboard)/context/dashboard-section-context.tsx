@@ -3,7 +3,7 @@ import { createContext, useContext } from "react";
 
 export type DashboardSection = 
     | "profesores" 
-    | "alumnos" 
+    | "asignacion" 
     | "materias" 
     | "horarios" 
     | "aulas" 
@@ -13,8 +13,7 @@ export type DashboardSection =
     | "matriculaciones"
     | "periodos" 
     | "bitacora" 
-    | "reportes" 
-    | "predicciones";
+    | "reportes";
 
 export interface DashboardSectionContextProps {
     selectedSection: DashboardSection;

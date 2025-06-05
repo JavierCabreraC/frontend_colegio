@@ -23,5 +23,7 @@ export const ENDPOINTS = {
         HORARIOS: `${API_URL}/academic/horarios/`,
         TRIMESTRES: `${API_URL}/academic/trimestres/`,
         MATRICULACIONES: `${API_URL}/academic/matriculaciones/`,
+        PROFESOR_MATERIAS: `${API_URL}/academic/profesor-materias/`,
+        STATS: `${API_URL}/academic/stats/`,
     },
 } as const;

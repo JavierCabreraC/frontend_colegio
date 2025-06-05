@@ -9,7 +9,7 @@ const menuItems = [
         title: "Gestión de Personal",
         items: [
             { name: "Profesores", section: "profesores" as DashboardSection, icon: "👨‍🏫" },
-            { name: "Alumnos", section: "alumnos" as DashboardSection, icon: "👨‍🎓" },
+            { name: "Asignación", section: "asignacion" as DashboardSection, icon: "📝" },
         ]
     },
     {
@@ -35,7 +35,6 @@ const menuItems = [
         title: "Reportes",
         items: [
             { name: "Reportes Institucionales", section: "reportes" as DashboardSection, icon: "📊" },
-            { name: "Predicciones ML", section: "predicciones" as DashboardSection, icon: "🤖" },
         ]
     }
 ];

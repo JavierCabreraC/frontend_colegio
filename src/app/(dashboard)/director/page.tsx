@@ -10,6 +10,8 @@ import { GestionesList } from "./components/gestiones-list";
 import { HorariosList } from "./components/horarios-list";
 import { TrimestresList } from "./components/trimestres-list";
 import { MatriculacionesList } from "./components/matriculaciones-list";
+import { AsignacionList } from "./components/asignacion-list";
+import { ReportesList } from "./components/reportes-list";
 
 export default function DirectorDashboard() {
     const { selectedSection } = useDashboardSection();
@@ -32,18 +34,13 @@ export default function DirectorDashboard() {
                 return <TrimestresList />;
             case "matriculaciones":
                 return <MatriculacionesList />;
+            case "asignacion":
+                return <AsignacionList />;
             case "bitacora":
                 return (
                     <div className="space-y-6">
                         <BitacoraStats />
                         <BitacoraList />
-                    </div>
-                );
-            case "alumnos":
-                return (
-                    <div className="text-center text-gray-500 py-8">
-                        <p className="text-lg">Sección de Alumnos</p>
-                        <p className="text-sm mt-2">En desarrollo...</p>
                     </div>
                 );
             case "periodos":
@@ -54,19 +51,7 @@ export default function DirectorDashboard() {
                     </div>
                 );
             case "reportes":
-                return (
-                    <div className="text-center text-gray-500 py-8">
-                        <p className="text-lg">Reportes Institucionales</p>
-                        <p className="text-sm mt-2">En desarrollo...</p>
-                    </div>
-                );
-            case "predicciones":
-                return (
-                    <div className="text-center text-gray-500 py-8">
-                        <p className="text-lg">Predicciones ML</p>
-                        <p className="text-sm mt-2">En desarrollo...</p>
-                    </div>
-                );
+                return <ReportesList />;
             default:
                 return <div className="text-center text-gray-500">Seleccione una opción del menú</div>;
         }

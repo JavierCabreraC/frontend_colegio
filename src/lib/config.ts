@@ -14,6 +14,7 @@ export const ENDPOINTS = {
         PROFESORES: `${API_URL}/auth/profesores/`,
         BITACORA: `${API_URL}/audit/bitacora/`,
         BITACORA_STATS: `${API_URL}/audit/bitacora/stats/`,
+        PREDICCIONES_ALUMNOS: `${API_URL}/predictions/mis-alumnos/`,
     },
     ACADEMIC: {
         MATERIAS: `${API_URL}/academic/materias/`,

@@ -173,3 +173,11 @@ export async function getMisHorarios(): Promise<PaginatedResponse<MisHorario>> {
     }
     return response.json();
 }
+
+export async function getPrediccionesAlumnos() {
+    const response = await fetchWithAuth(ENDPOINTS.AUTH.PREDICCIONES_ALUMNOS);
+    if (!response.ok) {
+        throw new Error('Error al obtener las predicciones de alumnos');
+    }
+    return response.json();
+}

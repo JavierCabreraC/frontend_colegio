@@ -127,3 +127,28 @@ export interface Participacion {
     puntaje: number;
     descripcion: string;
 }
+
+export interface BitacoraEntry {
+    id: number;
+    usuario: number;
+    usuario_email: string;
+    usuario_nombre: string;
+    tipo_accion: string;
+    ip: string;
+    fecha_hora: string;
+    created_at: string;
+}
+
+export interface BitacoraStats {
+    total_acciones: number;
+    acciones_por_tipo: {
+        tipo_accion: string;
+        count: number;
+    }[];
+    acciones_ultimos_7_dias: number;
+    usuarios_mas_activos: {
+        usuario__email: string;
+        usuario__tipo_usuario: string;
+        count: number;
+    }[];
+}

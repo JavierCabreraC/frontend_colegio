@@ -12,6 +12,8 @@ export const ENDPOINTS = {
         LOGIN: `${API_URL}/auth/login/`,
         LOGOUT: `${API_URL}/auth/logout/`,
         PROFESORES: `${API_URL}/auth/profesores/`,
+        BITACORA: `${API_URL}/audit/bitacora/`,
+        BITACORA_STATS: `${API_URL}/audit/bitacora/stats/`,
     },
     ACADEMIC: {
         MATERIAS: `${API_URL}/academic/materias/`,

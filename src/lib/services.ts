@@ -6,7 +6,9 @@ import {
     PaginatedResponse, 
     Profesor, 
     ProfesorFormData,
-    ProfesorDetalle 
+    ProfesorDetalle,
+    BitacoraEntry,
+    BitacoraStats
 } from "@/types";
 
 
@@ -63,5 +65,15 @@ export async function updateMateria(id: number, data: MateriaFormData): Promise<
         method: "PUT",
         body: JSON.stringify(data),
     });
+    return response.json();
+}
+
+export async function getBitacora(): Promise<PaginatedResponse<BitacoraEntry>> {
+    const response = await fetchWithAuth(ENDPOINTS.AUTH.BITACORA);
+    return response.json();
+}
+
+export async function getBitacoraStats(): Promise<BitacoraStats> {
+    const response = await fetchWithAuth(ENDPOINTS.AUTH.BITACORA_STATS);
     return response.json();
 }

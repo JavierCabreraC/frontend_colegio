@@ -1,9 +1,9 @@
 "use client";
 import { MateriasList } from "./components/materias-list";
 import { ProfesoresList } from "./components/profesores-list";
+import { BitacoraList } from "./components/bitacora-list";
+import { BitacoraStats } from "./components/bitacora-stats";
 import { useDashboardSection } from "@/app/(dashboard)/context/dashboard-section-context";
-
-
 
 export default function DirectorDashboard() {
     const { selectedSection } = useDashboardSection();
@@ -14,6 +14,13 @@ export default function DirectorDashboard() {
                 return <ProfesoresList />;
             case "materias":
                 return <MateriasList />;
+            case "bitacora":
+                return (
+                    <div className="space-y-6">
+                        <BitacoraStats />
+                        <BitacoraList />
+                    </div>
+                );
             case "alumnos":
                 return (
                     <div className="text-center text-gray-500 py-8">
@@ -39,13 +46,6 @@ export default function DirectorDashboard() {
                 return (
                     <div className="text-center text-gray-500 py-8">
                         <p className="text-lg">Períodos Académicos</p>
-                        <p className="text-sm mt-2">En desarrollo...</p>
-                    </div>
-                );
-            case "bitacora":
-                return (
-                    <div className="text-center text-gray-500 py-8">
-                        <p className="text-lg">Bitácora del Sistema</p>
                         <p className="text-sm mt-2">En desarrollo...</p>
                     </div>
                 );

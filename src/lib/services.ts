@@ -8,7 +8,10 @@ import {
     ProfesorFormData,
     ProfesorDetalle,
     BitacoraEntry,
-    BitacoraStats
+    BitacoraStats,
+    Aula,
+    Nivel,
+    Gestion
 } from "@/types";
 
 
@@ -75,5 +78,23 @@ export async function getBitacora(): Promise<PaginatedResponse<BitacoraEntry>> {
 
 export async function getBitacoraStats(): Promise<BitacoraStats> {
     const response = await fetchWithAuth(ENDPOINTS.AUTH.BITACORA_STATS);
+    return response.json();
+}
+
+// Servicios para Aulas
+export async function getAulas(page: number = 1): Promise<PaginatedResponse<Aula>> {
+    const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.AULAS}?page=${page}`);
+    return response.json();
+}
+
+// Servicios para Niveles
+export async function getNiveles(): Promise<Nivel[]> {
+    const response = await fetchWithAuth(ENDPOINTS.ACADEMIC.NIVELES);
+    return response.json();
+}
+
+// Servicios para Gestiones
+export async function getGestiones(page: number = 1): Promise<PaginatedResponse<Gestion>> {
+    const response = await fetchWithAuth(`${ENDPOINTS.ACADEMIC.GESTIONES}?page=${page}`);
     return response.json();
 }

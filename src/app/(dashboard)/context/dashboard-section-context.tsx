@@ -1,9 +1,18 @@
 "use client";
 import { createContext, useContext } from "react";
 
-
-
-export type DashboardSection = "profesores" | "alumnos" | "materias" | "horarios" | "aulas" | "periodos" | "bitacora" | "reportes" | "predicciones";
+export type DashboardSection = 
+    | "profesores" 
+    | "alumnos" 
+    | "materias" 
+    | "horarios" 
+    | "aulas" 
+    | "niveles"
+    | "gestiones"
+    | "periodos" 
+    | "bitacora" 
+    | "reportes" 
+    | "predicciones";
 
 export interface DashboardSectionContextProps {
     selectedSection: DashboardSection;

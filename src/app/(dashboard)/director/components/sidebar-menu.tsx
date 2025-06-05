@@ -18,6 +18,8 @@ const menuItems = [
             { name: "Materias", section: "materias" as DashboardSection, icon: "📚" },
             { name: "Horarios", section: "horarios" as DashboardSection, icon: "⏰" },
             { name: "Aulas", section: "aulas" as DashboardSection, icon: "🏫" },
+            { name: "Niveles", section: "niveles" as DashboardSection, icon: "📊" },
+            { name: "Gestiones", section: "gestiones" as DashboardSection, icon: "📅" },
         ]
     },
     {

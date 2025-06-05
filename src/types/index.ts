@@ -78,6 +78,33 @@ export interface MateriaFormData {
     horas_semanales: number;
 }
 
+export interface Aula {
+    id: number;
+    nombre: string;
+    capacidad: number;
+    horarios_count: number;
+}
+
+export interface Nivel {
+    id: number;
+    numero: number;
+    nombre: string;
+    descripcion: string;
+    total_grupos: number;
+    total_alumnos: number;
+}
+
+export interface Gestion {
+    id: number;
+    anio: number;
+    nombre: string;
+    fecha_inicio: string;
+    fecha_fin: string;
+    activa: boolean;
+    total_trimestres: number;
+    total_matriculaciones: number;
+}
+
 export interface PaginatedResponse<T> {
     count: number;
     total_pages: number;

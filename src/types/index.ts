@@ -151,11 +151,11 @@ export interface Matriculacion {
 
 export interface PaginatedResponse<T> {
     count: number;
+    next: string | null;
+    previous: string | null;
+    results: T[];
     total_pages: number;
     current_page: number;
-    next: boolean;
-    previous: boolean;
-    results: T[];
 }
 
 // Tipos existentes para futura implementación
@@ -253,4 +253,46 @@ export interface EstadisticasAcademicas {
         horas_semanales: number;
         total_profesores: number;
     }[];
+}
+
+export interface MisMateria {
+    id: number;
+    nombre: string;
+    codigo: string;
+    creditos: number;
+    horas_teoricas: number;
+    horas_practicas: number;
+    estado: string;
+}
+
+export interface MateriaImpartida {
+    id: number;
+    codigo: string;
+    nombre: string;
+}
+
+export interface MisGrupo {
+    id: number;
+    nombre_completo: string;
+    materia_nombre: string;
+    total_alumnos: number;
+    estado: string;
+}
+
+export interface MisAlumno {
+    id: number;
+    nombre_completo: string;
+    grupo_nombre: string;
+    materia_nombre: string;
+    estado: string;
+}
+
+export interface MisHorario {
+    id: number;
+    materia_nombre: string;
+    grupo_nombre: string;
+    dia_semana: string;
+    hora_inicio: string;
+    hora_fin: string;
+    estado: string;
 }

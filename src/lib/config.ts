@@ -14,6 +14,7 @@ export const ENDPOINTS = {
         PROFESORES: `${API_URL}/auth/profesores/`,
         BITACORA: `${API_URL}/audit/bitacora/`,
         BITACORA_STATS: `${API_URL}/audit/bitacora/stats/`,
+        PREDICCIONES_ALUMNOS: `${API_URL}/predictions/mis-alumnos/`,
     },
     ACADEMIC: {
         MATERIAS: `${API_URL}/academic/materias/`,
@@ -25,5 +26,9 @@ export const ENDPOINTS = {
         MATRICULACIONES: `${API_URL}/academic/matriculaciones/`,
         PROFESOR_MATERIAS: `${API_URL}/academic/profesor-materias/`,
         STATS: `${API_URL}/academic/stats/`,
+        MIS_MATERIAS: `${API_URL}/academic/mis-materias/`,
+        MIS_GRUPOS: `${API_URL}/academic/mis-grupos/`,
+        MIS_ALUMNOS: `${API_URL}/academic/mis-alumnos/`,
+        MIS_HORARIOS: `${API_URL}/academic/mis-horarios/`,
     },
 } as const;

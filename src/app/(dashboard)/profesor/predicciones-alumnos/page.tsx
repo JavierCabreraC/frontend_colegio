@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getPrediccionesAlumnos } from "@/lib/services";
+import { generatePrediccionesPDF } from "@/lib/pdf-utils";
 
 interface PrediccionAlumno {
     alumno_id: number;
@@ -34,6 +35,8 @@ export default function PrediccionesAlumnosPage() {
             try {
                 const response = await getPrediccionesAlumnos();
                 setData(response);
+                // Generar y descargar PDF automáticamente
+                generatePrediccionesPDF(response);
             } catch (err) {
                 setError("Error al cargar las predicciones de alumnos");
                 console.error(err);
@@ -67,6 +70,12 @@ export default function PrediccionesAlumnosPage() {
         <div className="space-y-6">
             <div className="flex justify-between items-center">
                 <h1 className="text-2xl font-semibold text-gray-900">Predicciones de Alumnos</h1>
+                <button
+                    onClick={() => generatePrediccionesPDF(data)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                >
+                    Descargar PDF
+                </button>
             </div>
 
             {/* Estadísticas */}
@@ -115,39 +124,47 @@ export default function PrediccionesAlumnosPage() {
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                        {data.alumnos.map((alumno) => (
-                            <tr key={alumno.alumno_id}>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm font-medium text-gray-900">
-                                        {alumno.matricula}
-                                    </div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-900">{alumno.nombre_completo}</div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-500">{alumno.grupo_nombre}</div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-500">
-                                        {alumno.promedio_predicciones.toFixed(2)}%
-                                    </div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full
-                                        ${alumno.nivel_riesgo_general === 'alto' ? 'bg-red-100 text-red-800' :
-                                        alumno.nivel_riesgo_general === 'medio' ? 'bg-yellow-100 text-yellow-800' :
-                                        'bg-green-100 text-green-800'}`}>
-                                        {alumno.nivel_riesgo_general.toUpperCase()}
-                                    </span>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-500">
-                                        {alumno.materias_riesgo_alto} de {alumno.total_materias}
-                                    </div>
+                        {data.alumnos.length === 0 ? (
+                            <tr>
+                                <td colSpan={6} className="px-6 py-4 text-center text-gray-500">
+                                    No hay predicciones disponibles
                                 </td>
                             </tr>
-                        ))}
+                        ) : (
+                            data.alumnos.map((alumno) => (
+                                <tr key={alumno.alumno_id}>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="text-sm font-medium text-gray-900">
+                                            {alumno.matricula}
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="text-sm text-gray-900">{alumno.nombre_completo}</div>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="text-sm text-gray-500">{alumno.grupo_nombre}</div>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="text-sm text-gray-500">
+                                            {alumno.promedio_predicciones.toFixed(2)}%
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                                            ${alumno.nivel_riesgo_general === 'alto' ? 'bg-red-100 text-red-800' :
+                                            alumno.nivel_riesgo_general === 'medio' ? 'bg-yellow-100 text-yellow-800' :
+                                            'bg-green-100 text-green-800'}`}>
+                                            {alumno.nivel_riesgo_general.toUpperCase()}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="text-sm text-gray-500">
+                                            {alumno.materias_riesgo_alto} de {alumno.total_materias}
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))
+                        )}
                     </tbody>
                 </table>
             </div>

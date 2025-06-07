@@ -91,3 +91,81 @@ export function generateBitacoraPDF(entries: BitacoraEntry[]) {
     // Guardar el PDF
     doc.save('bitacora-sistema.pdf');
 }
+
+interface PrediccionAlumno {
+    alumno_id: number;
+    matricula: string;
+    nombre_completo: string;
+    grupo_nombre: string;
+    total_materias: number;
+    promedio_predicciones: number;
+    nivel_riesgo_general: "alto" | "medio" | "bajo";
+    materias_riesgo_alto: number;
+    ultima_actualizacion: string;
+}
+
+interface PrediccionesResponse {
+    total_alumnos: number;
+    estadisticas: {
+        alto_riesgo: number;
+        medio_riesgo: number;
+        bajo_riesgo: number;
+    };
+    alumnos: PrediccionAlumno[];
+}
+
+export function generatePrediccionesPDF(data: PrediccionesResponse) {
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    
+    // Título
+    doc.setFontSize(20);
+    doc.text('Predicciones de Alumnos', pageWidth / 2, 20, { align: 'center' });
+    
+    // Fecha de generación
+    doc.setFontSize(10);
+    doc.text(`Generado el: ${new Date().toLocaleDateString()}`, pageWidth / 2, 30, { align: 'center' });
+    
+    // Estadísticas
+    doc.setFontSize(16);
+    doc.text('Resumen de Riesgos', 14, 45);
+    
+    const statsData = [
+        ['Total Alumnos', data.total_alumnos.toString()],
+        ['Alto Riesgo', data.estadisticas.alto_riesgo.toString()],
+        ['Medio Riesgo', data.estadisticas.medio_riesgo.toString()],
+        ['Bajo Riesgo', data.estadisticas.bajo_riesgo.toString()]
+    ];
+    
+    (doc as any).autoTable({
+        startY: 50,
+        head: [['Indicador', 'Cantidad']],
+        body: statsData,
+        theme: 'grid',
+        headStyles: { fillColor: [41, 128, 185] }
+    });
+    
+    // Tabla de Alumnos
+    doc.setFontSize(16);
+    doc.text('Detalle de Predicciones por Alumno', 14, (doc as any).lastAutoTable.finalY + 20);
+    
+    const alumnosData = data.alumnos.map(alumno => [
+        alumno.matricula,
+        alumno.nombre_completo,
+        alumno.grupo_nombre,
+        `${alumno.promedio_predicciones.toFixed(2)}%`,
+        alumno.nivel_riesgo_general.toUpperCase(),
+        `${alumno.materias_riesgo_alto} de ${alumno.total_materias}`
+    ]);
+    
+    (doc as any).autoTable({
+        startY: (doc as any).lastAutoTable.finalY + 25,
+        head: [['Matrícula', 'Nombre', 'Grupo', 'Promedio', 'Riesgo', 'Materias en Riesgo']],
+        body: alumnosData,
+        theme: 'grid',
+        headStyles: { fillColor: [41, 128, 185] }
+    });
+    
+    // Guardar el PDF
+    doc.save('predicciones-alumnos.pdf');
+}
